@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "855092319917",
+    "project_id": "my-ecommerce-app-hoquiton",
+    "storage_bucket": "my-ecommerce-app-hoquiton.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855092319917:android:44a5919d14b44704265824",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbpD0Gj1OFum31tDzPkjOXvvsUDoLisfI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
