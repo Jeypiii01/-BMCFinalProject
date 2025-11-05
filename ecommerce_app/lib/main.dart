@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'firebase_options.dart';
-import 'package:ecommerce_app/screens/auth_wrapper.dart'; // Import AuthWrapper
+import 'package:ecommerce_app/screens/auth_wrapper.dart';
+import 'package:ecommerce_app/providers/cart_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
-  // 1. Preserve the splash screen and ensure Flutter is ready
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  // 2. Initialize Firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // 3. Run the app
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CartProvider(),
+      child: const MyApp(),
+    ),
+  );
 
-  // 4. Remove the splash screen after app is ready
-  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
@@ -32,7 +34,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      // Set the AuthWrapper as the app's home
       home: const AuthWrapper(),
     );
   }

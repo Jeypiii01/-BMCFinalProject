@@ -10,12 +10,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // GlobalKey for the Form and Controllers
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  // Firebase Auth instance and loading state
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool _isLoading = false;
 
@@ -26,7 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  // Utility function to show an error dialog
   void _showErrorDialog(String message) {
     showDialog(
       context: context,
@@ -45,7 +42,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // Firebase Login Logic
   Future<void> _login() async {
     if (!_formKey.currentState!.validate()) {
       return;
@@ -60,7 +56,6 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      // AuthWrapper handles navigation on success
     } on FirebaseAuthException catch (e) {
       _showErrorDialog(e.message ?? 'An unknown error occurred.');
     } finally {
@@ -86,7 +81,6 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Email Field
                 TextFormField(
                   controller: _emailController,
                   decoration: const InputDecoration(
@@ -104,7 +98,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const SizedBox(height: 16),
 
-                // Password Field
                 TextFormField(
                   controller: _passwordController,
                   obscureText: true,
@@ -122,23 +115,20 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const SizedBox(height: 20),
 
-                // Login Button
                 _isLoading
                     ? const CircularProgressIndicator()
                     : ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                   ),
-                  onPressed: _login, // Call the login function
+                  onPressed: _login,
                   child: const Text('Login'),
                 ),
 
                 const SizedBox(height: 10),
 
-                // Sign Up Toggle Button
                 TextButton(
                   onPressed: () {
-                    // Navigate to the Sign Up screen
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (context) => const SignUpScreen(),
